@@ -15,6 +15,7 @@ public class CheckerBoard {
     
     private AnchorPane board;
 
+    // uses default colors
     public CheckerBoard(int numRows, int numCols, double boardWidth, double boardHeight) {
         this(numRows, numCols, boardWidth, boardHeight, Color.RED, Color.BLACK);
     }
@@ -24,13 +25,14 @@ public class CheckerBoard {
         this.numCols = numCols;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
+        this.rectangleWidth = Math.ceil(boardWidth / numCols); // Math.ceil to remove ugly white lines
+        this.rectangleHeight = Math.ceil(boardHeight / numRows);
         this.lightColor = lightColor;
         this.darkColor = darkColor;
     }
     
     public AnchorPane build() {
-        
-        return null;
+        return this.board;
     }
     
     public AnchorPane getBoard() {
