@@ -6,21 +6,35 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 
 public class Controller implements Initializable {
     
     // default values
-    private final int numRows =	8;
-    private final int numCols =	8;
-    private final int boardWidth = 600;	
-    private final int boardHeight = 600;
-    
-    private CheckerBoard board;	
+    private int numRows =	8;
+    private int numCols =	8;
+    private double boardWidth = 600;	
+    private double boardHeight = 600;
 
-    public void ready() {
+    
+    private Stage stage;
+    private CheckerBoard board;
+    
+    @FXML
+    private AnchorPane root;
+
+    public void ready(Stage stage) {
+        this.stage = stage;
+        this.boardHeight = stage.getHeight();
+        this.boardWidth = stage.getWidth();
         this.board = new CheckerBoard(numRows, numCols, boardWidth, boardHeight);
     }
+    
+//    ChangeListener<Number> lambdaChangeListener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
+//     drawGrid();
+//    };
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

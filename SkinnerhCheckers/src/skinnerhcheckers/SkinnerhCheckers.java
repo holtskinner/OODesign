@@ -23,7 +23,7 @@ public class SkinnerhCheckers extends Application {
         stage.setTitle("Checkers");
         stage.setScene(scene);
         stage.show();
-        controller.ready();
+        controller.ready(stage);
     }
     
     public static void main(String[] args) {
