@@ -19,7 +19,7 @@ public class SkinnerhCheckers extends Application {
         Parent root = loader.load();
         Controller controller = loader.getController();
         
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 600, 600);
         stage.setTitle("Checkers");
         stage.setScene(scene);
         stage.show();

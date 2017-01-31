@@ -9,16 +9,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="skinnerhcheckers.Controller">
+<VBox fx:id="vBox" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="skinnerhcheckers.Controller">
    <children>
-      <MenuBar>
+      <MenuBar fx:id="menuBar">
         <menus>
           <Menu mnemonicParsing="false" text="Grid">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#handleGridChange" text="16 x 16" />
-                  <MenuItem mnemonicParsing="false" text="10 x 10" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleGridChange" text="8 x 8" />
-                  <MenuItem mnemonicParsing="false" text="3 x 3" />
+              <MenuItem mnemonicParsing="false" onAction="#GridChange16" text="16 x 16" />
+                  <MenuItem mnemonicParsing="false" onAction="#GridChange10" text="10 x 10" />
+                  <MenuItem mnemonicParsing="false" onAction="#GridChange8" text="8 x 8" />
+                  <MenuItem mnemonicParsing="false" onAction="#GridChange3" text="3 x 3" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Colors">

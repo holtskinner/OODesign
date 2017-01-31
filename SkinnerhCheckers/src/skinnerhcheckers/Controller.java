@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -17,46 +18,70 @@ import javafx.stage.Stage;
 
 
 public class Controller implements Initializable {
-    
-    @FXML
-    private AnchorPane anchorPane;
-    
     @FXML
     private VBox vBox;
     
-    // default values
-    private int numRowsColumns = 8;
-    private double boardWidth;	
-    private double boardHeight;
+    @FXML
+    private MenuBar menuBar;
+    private double menuBarHeight;
     
     private Stage stage;
+    
+    // default values
+    private int numRowsColumns = 8;
+    private double boardWidth = 500;
+    private double boardHeight = 500;
+
     private CheckerBoard board;
 
     public void ready(Stage stage) {
         this.stage = stage;
-        this.boardWidth = stage.getWidth();
-        this.boardHeight = stage.getHeight();
-        this.board = new CheckerBoard(numRowsColumns, numRowsColumns, boardWidth, boardHeight);
-        anchorPane = this.board.build();
-        vBox.getChildren().add(anchorPane);
-        
-        ChangeListener<Number> lambdaChangeListener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
-            this.anchorPane = this.board.build();
-        };
-
+        menuBarHeight = menuBar.getHeight();
+        render();
         vBox.widthProperty().addListener(lambdaChangeListener);
         vBox.heightProperty().addListener(lambdaChangeListener);
-
     }
     
-//    ChangeListener<Number> lambdaChangeListener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
-//     drawGrid();
-//    };
-//
+    ChangeListener<Number> lambdaChangeListener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
+        render();
+    };
+    
+    //Called everytime a new grid is needed
+    private void render() {
+        
+        if(board != null) {
+           vBox.getChildren().remove(board.getBoard());
+        }
+        
+        boardWidth = vBox.getWidth();
+        boardHeight =vBox.getHeight() - menuBarHeight; // stage contains menu, want to avoid in calculations
+
+        board = new CheckerBoard(numRowsColumns, numRowsColumns, boardWidth, boardHeight);
+        vBox.getChildren().add(board.build());
+    }
+
     @FXML
-    private void handleGridChange(ActionEvent event) {
-        this.board = new CheckerBoard(numRowsColumns, numRowsColumns, boardWidth, boardHeight);
-        this.anchorPane = this.board.build(); 
+    private void GridChange16(ActionEvent event) {
+        numRowsColumns = 16;
+        render();
+    }
+    
+    @FXML
+    private void GridChange10(ActionEvent event) {
+        numRowsColumns = 10;
+        render();
+    }
+    
+    @FXML
+    private void GridChange8(ActionEvent event) {
+        numRowsColumns = 8;
+        render();
+    }
+    
+    @FXML
+    private void GridChange3(ActionEvent event) {
+        numRowsColumns = 3;
+        render();
     }
     
     @Override
