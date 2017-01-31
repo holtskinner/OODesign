@@ -31,6 +31,8 @@ public class Controller implements Initializable {
     private int numRowsColumns = 8;
     private double boardWidth = 500;
     private double boardHeight = 500;
+    private Color lightColor = Color.RED;
+    private Color darkColor = Color.BLACK;
 
     private CheckerBoard board;
 
@@ -56,31 +58,45 @@ public class Controller implements Initializable {
         boardWidth = vBox.getWidth();
         boardHeight =vBox.getHeight() - menuBarHeight; // stage contains menu, want to avoid in calculations
 
-        board = new CheckerBoard(numRowsColumns, numRowsColumns, boardWidth, boardHeight);
+        board = new CheckerBoard(numRowsColumns, numRowsColumns, boardWidth, boardHeight, lightColor, darkColor);
         vBox.getChildren().add(board.build());
     }
 
     @FXML
-    private void GridChange16(ActionEvent event) {
+    private void gridChange16(ActionEvent event) {
         numRowsColumns = 16;
         render();
     }
     
     @FXML
-    private void GridChange10(ActionEvent event) {
+    private void gridChange10(ActionEvent event) {
         numRowsColumns = 10;
         render();
     }
     
     @FXML
-    private void GridChange8(ActionEvent event) {
+    private void gridChange8(ActionEvent event) {
         numRowsColumns = 8;
         render();
     }
     
     @FXML
-    private void GridChange3(ActionEvent event) {
+    private void gridChange3(ActionEvent event) {
         numRowsColumns = 3;
+        render();
+    }
+    
+    @FXML
+    private void colorChangeDefault(ActionEvent event) {
+        lightColor = Color.RED;
+        darkColor = Color.BLACK;
+        render();
+    }
+    
+    @FXML
+    private void colorChangeBlue(ActionEvent event) {
+        lightColor = Color.LIGHTBLUE;
+        darkColor = Color.DARKBLUE;
         render();
     }
     
