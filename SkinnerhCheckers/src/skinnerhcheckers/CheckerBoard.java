@@ -1,8 +1,5 @@
 package skinnerhcheckers;
 
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -34,15 +31,12 @@ public class CheckerBoard {
     
     public AnchorPane build() { 
         board = new AnchorPane();
-        
         this.rectangleWidth = Math.ceil(boardWidth / numCols);
         this.rectangleHeight = Math.ceil(boardHeight / numRows);
-
+        
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numCols; j++) {
-                
                 Color color = (i + j) % 2 == 0 ?  lightColor: darkColor;
-                
                 Rectangle square = new Rectangle(rectangleWidth, rectangleHeight, color);
                 board.getChildren().add(square);
                 AnchorPane.setTopAnchor(square, rectangleHeight * i);
@@ -55,19 +49,19 @@ public class CheckerBoard {
     public AnchorPane getBoard() {
         return board != null ? board : null;
     }
-    
+
     public int getNumRows() {
         return this.numRows;
     }
-    
+
     public int getNumCols() {
         return this.numCols;
     }
-    
+
     public double getWidth() {
         return this.boardWidth;
     }
-    
+
     public double getHeight() {
         return this.boardHeight;
     }

@@ -4,11 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
- *
  * @author holt skinner
  */
 public class SkinnerhCheckers extends Application {
@@ -21,6 +20,7 @@ public class SkinnerhCheckers extends Application {
         
         Scene scene = new Scene(root, 600, 600);
         stage.setTitle("Checkers");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("crown.png")));
         stage.setScene(scene);
         stage.show();
         controller.ready(stage);
