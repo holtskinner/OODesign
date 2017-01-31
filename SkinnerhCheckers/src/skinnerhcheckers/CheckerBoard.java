@@ -8,7 +8,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
- *
  * @author holt skinner
  */
 public class CheckerBoard {
@@ -29,27 +28,30 @@ public class CheckerBoard {
         this.numCols = numCols;
         this.boardWidth = boardWidth;
         this.boardHeight = boardHeight;
-        this.rectangleWidth = Math.ceil(boardWidth / numCols); // Math.ceil to remove ugly white lines
-        this.rectangleHeight = Math.ceil(boardHeight / numRows);
+//        this.rectangleWidth = Math.ceil(boardWidth / numCols); // Math.ceil to remove ugly white lines
+//        this.rectangleHeight = Math.ceil(boardHeight / numRows);
+//this.rectangleWidth = 50;
+//this.rectangleHeight = 50;
         this.lightColor = lightColor;
         this.darkColor = darkColor;
     }
     
-    public AnchorPane build() {
-        
+    public AnchorPane build() { 
         board = new AnchorPane();
-        ObservableList<Node> children = board.getChildren();
-        children.clear();
-        Color color = lightColor;
+        board.getChildren().clear();
+        this.rectangleWidth = Math.ceil(boardWidth / numCols); // Math.ceil to remove ugly white lines
+        this.rectangleHeight = Math.ceil(boardHeight / numRows);
 
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numCols; j++) {
-//                color = (i + j) % 2 == 0 ? darkColor : lightColor;
+                Color color = (i + j) % 2 == 0 ? darkColor : lightColor;
                 Rectangle square = new Rectangle(rectangleWidth, rectangleHeight, color);
                 board.getChildren().add(square);
+                AnchorPane.setTopAnchor(square, rectangleHeight * i);
+                AnchorPane.setLeftAnchor(square, rectangleWidth * j);
             }
         }
-        return this.board;
+        return board;
     }
     
     public AnchorPane getBoard() {

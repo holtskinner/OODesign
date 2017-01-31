@@ -10,12 +10,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 
 public class Controller implements Initializable {
+    
+    @FXML
+    private AnchorPane anchorPane;
+    
+    @FXML
+    private VBox vBox;
     
     // default values
     private int numRowsColumns = 8;
@@ -24,36 +31,32 @@ public class Controller implements Initializable {
     
     private Stage stage;
     private CheckerBoard board;
-    
-    @FXML
-    private AnchorPane anchorPane;
 
     public void ready(Stage stage) {
         this.stage = stage;
         this.boardWidth = stage.getWidth();
         this.boardHeight = stage.getHeight();
         this.board = new CheckerBoard(numRowsColumns, numRowsColumns, boardWidth, boardHeight);
-        this.anchorPane = this.board.build();
+        anchorPane = this.board.build();
+        vBox.getChildren().add(anchorPane);
         
-//        ChangeListener<Number> lambdaChangeListener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
-//            this.anchorPane = this.board.build();
-//        };
+        ChangeListener<Number> lambdaChangeListener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
+            this.anchorPane = this.board.build();
+        };
 
-//        this.stage.widthProperty().addListener(lambdaChangeListener);
-//        this.stage.heightProperty().addListener(lambdaChangeListener);
+        vBox.widthProperty().addListener(lambdaChangeListener);
+        vBox.heightProperty().addListener(lambdaChangeListener);
 
     }
     
 //    ChangeListener<Number> lambdaChangeListener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
 //     drawGrid();
 //    };
-    
+//
     @FXML
     private void handleGridChange(ActionEvent event) {
-        System.out.println(event);
         this.board = new CheckerBoard(numRowsColumns, numRowsColumns, boardWidth, boardHeight);
-        this.anchorPane = this.board.build();
-        
+        this.anchorPane = this.board.build(); 
     }
     
     @Override
