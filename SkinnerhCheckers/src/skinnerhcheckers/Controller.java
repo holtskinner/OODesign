@@ -50,7 +50,6 @@ public class Controller implements Initializable {
     
     //Called everytime a new grid is needed
     private void render() {
-        
         if(board != null) {
            vBox.getChildren().remove(board.getBoard());
         }
