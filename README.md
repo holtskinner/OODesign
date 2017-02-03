@@ -1,1 +1,1 @@
-# Challenges for Advanced Object Oriented Design (CS 4330)
+# Challenges for Object Oriented Design
