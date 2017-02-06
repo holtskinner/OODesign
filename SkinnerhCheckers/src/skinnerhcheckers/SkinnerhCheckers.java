@@ -14,16 +14,19 @@ public class SkinnerhCheckers extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("View.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("UI.fxml"));
         Parent root = loader.load();
-        Controller controller = loader.getController();
+        UIController controller = loader.getController();
         
-        Scene scene = new Scene(root, 600, 600);
+        Scene scene = new Scene(root, 600, 625);
+        
         stage.setTitle("Checkers");
         stage.getIcons().add(new Image(getClass().getResourceAsStream("crown.png")));
+        
         stage.setScene(scene);
         stage.show();
-        controller.ready(stage);
+        
+        controller.ready(stage, scene);
     }
     
     public static void main(String[] args) {
