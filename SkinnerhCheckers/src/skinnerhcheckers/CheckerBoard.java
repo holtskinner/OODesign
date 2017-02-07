@@ -9,36 +9,32 @@ import javafx.scene.shape.Rectangle;
  */
 public class CheckerBoard {
     
-    private int numRows;
-    private int numCols;
-    private double boardWidth;
-    private double boardHeight;
+    private int numRowsColumns;
+    private double boardSize;
     private double rectangleSize;
     private Color lightColor = Color.RED;
     private Color darkColor = Color.BLACK;
     private AnchorPane anchorPane;
 
     // uses default colors
-    public CheckerBoard(int numRows, int numCols, double boardWidth, double boardHeight) {
-       this.numRows = numRows;
-       this.numCols = numCols;
-       this.boardWidth = boardWidth;
-       this.boardHeight = boardHeight;
-       rectangleSize = boardWidth / numCols;
+    public CheckerBoard(int numRowsColumns, double boardSize) {
+       this.numRowsColumns = numRowsColumns;
+       this.boardSize = boardSize;
+       rectangleSize = boardSize / numRowsColumns;
     }
     
-    public CheckerBoard(int numRows, int numCols, double boardWidth, double boardHeight, Color lightColor, Color darkColor) {
-       this(numRows, numCols, boardWidth, boardHeight);
+    public CheckerBoard(int numRowsColumns, double boardSize, Color lightColor, Color darkColor) {
+       this(numRowsColumns, boardSize);
        this.lightColor = lightColor;
        this.darkColor = darkColor;
     }
   
     public AnchorPane build() {
         anchorPane = new AnchorPane();
-        anchorPane.setPrefSize(boardWidth, boardHeight);
+        anchorPane.setPrefSize(boardSize, boardSize);
         
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
+        for (int i = 0; i < numRowsColumns; i++) {
+            for (int j = 0; j < numRowsColumns; j++) {
                 Rectangle rectangle = new Rectangle(j * rectangleSize, i * rectangleSize, rectangleSize, rectangleSize);
                 Color color =  (j % 2) == (i % 2) ? lightColor : darkColor;
                 rectangle.setFill(color);
@@ -53,20 +49,12 @@ public class CheckerBoard {
         return anchorPane;
     }
 
-    public int getNumRows() {
-        return numRows;
+    public int getNumRowsColumns() {
+        return numRowsColumns;
     }
 
-    public int getNumCols() {
-        return numCols;
-    }
-
-    public double getWidth() {
-        return boardWidth;
-    }
-
-    public double getHeight() {
-        return boardHeight;
+    public double getBoardSize() {
+        return boardSize;
     }
     
     public Color getLightColor() {

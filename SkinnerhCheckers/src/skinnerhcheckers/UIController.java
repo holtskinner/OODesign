@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -17,17 +16,12 @@ import javafx.stage.Stage;
 
 public class UIController implements Initializable {
     @FXML
-    private MenuBar menuBar;
-    private double menuBarHeight;
-    
-    @FXML
     private StackPane stackPane;
 
     private Stage stage;
     private Scene scene;
 
-    // default values
-    private double boardWidth;
+    private double boardSize;
     private double boardHeight;
     
     private int numRowsColumns;
@@ -47,7 +41,6 @@ public class UIController implements Initializable {
     public void ready(Stage stage, Scene scene) {
         this.stage = stage;
         this.scene = scene;
-        this.menuBarHeight = menuBar.getHeight(); // this height never changes
         
         // Lambda expression to allow changing of the window size
         ChangeListener<Number> listener = (ObservableValue<? extends Number> observable, Number oldValue, final Number newValue) -> {
@@ -63,11 +56,10 @@ public class UIController implements Initializable {
 
     //Called everytime a new grid is needed
     private void render() {
-        boardWidth = scene.getWidth();
-        boardHeight = scene.getHeight() - menuBarHeight;
+        boardSize = scene.getWidth();
         
         stackPane.getChildren().clear();
-        checkerBoard = new CheckerBoard(numRowsColumns, numRowsColumns, boardWidth, boardHeight, lightColor, darkColor);
+        checkerBoard = new CheckerBoard(numRowsColumns, boardSize, lightColor, darkColor);
         stackPane.getChildren().add(checkerBoard.build());
     }
 
@@ -119,5 +111,4 @@ public class UIController implements Initializable {
     private void setDefaultRowsCols() {
         numRowsColumns = 8;
     }
-
 }
