@@ -55,8 +55,8 @@ public class UIController implements Initializable {
 
 
     //Called everytime a new grid is needed
-    private void render() {
-        boardSize = scene.getWidth();
+    private void render() {    
+        boardSize = Math.min(scene.getWidth(), scene.getHeight() - 25);
         
         stackPane.getChildren().clear();
         checkerBoard = new CheckerBoard(numRowsColumns, boardSize, lightColor, darkColor);
