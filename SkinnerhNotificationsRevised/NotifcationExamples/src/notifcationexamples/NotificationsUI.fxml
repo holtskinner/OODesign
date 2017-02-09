@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notifcationexamples.NotificationsUIController">
+   <children>
+      <Button layoutX="29.0" layoutY="23.0" mnemonicParsing="false" onAction="#startTask1" text="Task 1" />
+      <Button layoutX="107.0" layoutY="23.0" mnemonicParsing="false" onAction="#startTask2" text="Task 2" />
+      <Button layoutX="185.0" layoutY="23.0" mnemonicParsing="false" onAction="#startTask3" text="Task 3" />
+      <TextArea fx:id="textArea" layoutX="29.0" layoutY="66.0" prefHeight="307.0" prefWidth="542.0" />
+   </children>
+</AnchorPane>
