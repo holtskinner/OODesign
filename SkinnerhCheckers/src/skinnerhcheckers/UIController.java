@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.StackPane;
@@ -55,12 +56,27 @@ public class UIController implements Initializable {
 
 
     //Called everytime a new grid is needed
-    private void render() {    
-        boardSize = Math.min(scene.getWidth(), scene.getHeight() - 25);
+    // use padding to center board
+    private void render() {     
+        double sceneWidth = scene.getWidth();
+        double sceneHeight = scene.getHeight() - 25;
+        double horizontalPadding = 0.0;
+        double verticalPadding = 0.0;
         
+        if (sceneWidth > sceneHeight) {
+            boardSize = sceneHeight;
+            horizontalPadding = (sceneWidth - boardSize) / 2;
+            verticalPadding = 0.0;
+        } else {
+            boardSize = sceneWidth;
+            verticalPadding = (sceneHeight - boardSize) / 2;
+            horizontalPadding = 0.0;
+        }
+        
+        stackPane.setPadding(new Insets(verticalPadding, horizontalPadding, verticalPadding, horizontalPadding));
         stackPane.getChildren().clear();
         checkerBoard = new CheckerBoard(numRowsColumns, boardSize, lightColor, darkColor);
-        stackPane.getChildren().add(checkerBoard.build());
+        stackPane.getChildren().add(checkerBoard.build());    
     }
 
     @FXML
