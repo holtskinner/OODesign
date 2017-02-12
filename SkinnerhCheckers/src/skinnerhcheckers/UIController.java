@@ -76,7 +76,7 @@ public class UIController implements Initializable {
         stackPane.setPadding(new Insets(verticalPadding, horizontalPadding, verticalPadding, horizontalPadding));
         stackPane.getChildren().clear();
         checkerBoard = new CheckerBoard(numRowsColumns, boardSize, lightColor, darkColor);
-        stackPane.getChildren().add(checkerBoard.build());    
+        stackPane.getChildren().add(checkerBoard.build());
     }
 
     @FXML
