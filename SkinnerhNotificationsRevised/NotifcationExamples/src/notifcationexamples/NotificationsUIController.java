@@ -78,9 +78,6 @@ public class NotificationsUIController implements Initializable, Notifiable {
 
     @Override
     public void notify(String message) {
-        if (task1.getCurrentState() == ThreadState.ENDED) {
-            task1 = null;
-        }
         textArea.appendText(message + "\n");
     }
     
@@ -92,9 +89,15 @@ public class NotificationsUIController implements Initializable, Notifiable {
             task2.setOnNotification((String message) -> {
                 textArea.appendText(message + "\n");
             });
-            
+        }    
+        if (task2.getCurrentState() == ThreadState.RUNNING) {
+            task2.end();
+            task2 = null;
+            task2Button.setText("Task 2");
+        } else {
             task2.start();
-        }        
+            task2Button.setText("Quit");
+        }
     }
     
     @FXML
@@ -106,8 +109,15 @@ public class NotificationsUIController implements Initializable, Notifiable {
             task3.addPropertyChangeListener((PropertyChangeEvent evt) -> {
                 textArea.appendText((String)evt.getNewValue() + "\n");
             });
-            
+        }
+        
+        if (task3.getCurrentState() == ThreadState.RUNNING) {
+            task3.end();
+            task3 = null;
+            task3Button.setText("Task 3");
+        } else {
             task3.start();
+            task3Button.setText("Quit");
         }
     }
 }
