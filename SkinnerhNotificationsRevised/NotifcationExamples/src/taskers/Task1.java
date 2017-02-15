@@ -23,13 +23,17 @@ public class Task1 extends Thread {
     
     private Notifiable notificationTarget;
     
+    private ThreadState currentState;
+    
     public Task1(int maxValue, int notifyEvery)  {
         this.maxValue = maxValue;
         this.notifyEvery = notifyEvery;
+        currentState = ThreadState.BEGIN;
     }
     
     @Override
     public void run() {
+        currentState = ThreadState.RUNNING;
         doNotify("Task1 start.");
         for (int i = 0; i < maxValue; i++) {
             
@@ -45,6 +49,7 @@ public class Task1 extends Thread {
     }
     
     public void end() {
+        currentState = ThreadState.INTERRUPTED;
         exit = true;
     }
     
@@ -59,5 +64,13 @@ public class Task1 extends Thread {
                 notificationTarget.notify(message);
             });
         }
+    }
+    
+    public ThreadState getCurrentState() {
+        return currentState;
+    }
+    
+    public void setCurrentState(ThreadState state) {
+        this.currentState = state;
     }
 }

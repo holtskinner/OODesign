@@ -21,18 +21,20 @@ public class Task2 extends Thread {
     
     private int maxValue, notifyEvery;
     boolean exit = false;
+    private ThreadState currentState;
     
     private ArrayList<Notification> notifications = new ArrayList<>();
     
     public Task2(int maxValue, int notifyEvery)  {
         this.maxValue = maxValue;
         this.notifyEvery = notifyEvery;
+        currentState = ThreadState.BEGIN;
     }
     
     @Override
     public void run() {
         doNotify("Started Task2!");
-        
+        currentState = ThreadState.RUNNING;
         for (int i = 0; i < maxValue; i++) {
             
             if (i % notifyEvery == 0) {
@@ -40,6 +42,7 @@ public class Task2 extends Thread {
             }
             
             if (exit) {
+                currentState = ThreadState.INTERRUPTED;
                 return;
             }
         }
