@@ -66,4 +66,12 @@ public class Task2 extends Thread {
             });
         }
     }
+    
+    public ThreadState getCurrentState() {
+        return currentState;
+    }
+    
+    public void setCurrentState(ThreadState state) {
+        this.currentState = state;
+    }
 }

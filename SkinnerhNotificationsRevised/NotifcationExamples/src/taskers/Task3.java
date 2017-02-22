@@ -21,17 +21,20 @@ public class Task3 extends Thread {
     
     private int maxValue, notifyEvery;
     boolean exit = false;
+    ThreadState currentState;
     
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     
     public Task3(int maxValue, int notifyEvery)  {
         this.maxValue = maxValue;
         this.notifyEvery = notifyEvery;
+        currentState = ThreadState.BEGIN;
     }
     
     @Override
     public void run() {
         doNotify("Task3 start.");
+        currentState = ThreadState.RUNNING;
         for (int i = 0; i < maxValue; i++) {
             
             if (i % notifyEvery == 0) {
@@ -47,6 +50,7 @@ public class Task3 extends Thread {
     
     public void end() {
         exit = true;
+        currentState = ThreadState.ENDED;
     }
     
     // the following two methods allow property change listeners to be added
@@ -65,5 +69,13 @@ public class Task3 extends Thread {
             // I'm choosing not to send the old value (second param).  Sending "" instead.
             pcs.firePropertyChange("message", "", message);
         });
+    }
+    
+    public ThreadState getCurrentState() {
+        return currentState;
+    }
+    
+    public void setCurrentState(ThreadState state) {
+        this.currentState = state;
     }
 }
