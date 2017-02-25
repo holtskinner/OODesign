@@ -19,12 +19,18 @@ public class SkinnerhMovieReviews extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MovieReviewsUI.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MovieReviewsUI.fxml"));
+        Parent root = (Parent)loader.load();
+        MovieReviewsUIController controller = (MovieReviewsUIController)loader.getController();
         
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
         stage.show();
+        
+        controller.ready(stage);
+
+        MovieReviewsParser.getMovieReviews("Zootopia");
     }
 
     /**
