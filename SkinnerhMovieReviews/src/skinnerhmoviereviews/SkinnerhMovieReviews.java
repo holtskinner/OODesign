@@ -24,7 +24,7 @@ public class SkinnerhMovieReviews extends Application {
         stage.setScene(scene);
         stage.show();
         
-        controller.ready(stage);
+        controller.ready();
     }
 
     /**
