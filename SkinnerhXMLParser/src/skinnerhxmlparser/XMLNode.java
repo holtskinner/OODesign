@@ -1,5 +1,6 @@
 package skinnerhxmlparser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -9,10 +10,8 @@ import java.util.HashMap;
 public class XMLNode {
     public String name;
     public String content;
-    public HashMap properties;
-    public HashMap attributes;
+    public HashMap<String, String> attributes;
+    public ArrayList<XMLNode> children;
     
-    public XMLNode() {
-        
-    }
+    public XMLNode() {}
 }

@@ -22,11 +22,14 @@ public class XMLParserUIController implements Initializable {
     }
     
     @FXML
-    private void handleButtonAction(ActionEvent event) {
+    private void handleButtonAction(ActionEvent event) throws Exception {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open XML File");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml"));
         File file = fileChooser.showOpenDialog(stage);
+        
+        XMLNode root = StackParser.parse(file);
+        System.out.println(root);
     }
     
     @Override
