@@ -51,9 +51,6 @@ public class MovieReviewsUIController implements Initializable {
         movieListItems = FXCollections.observableArrayList();
         
         moviesListView.getSelectionModel().selectedIndexProperty().addListener((ObservableValue<? extends Number> ov, Number old_val, Number new_val) -> {
-            // When the contents of the newsListView changes a situation can be created
-            // where autoselection results in a new_val that is out of range of the stories.
-            // The following makes sure the new_val is within the bounds of stories.
             if ((int)new_val < 0 || (int)new_val > (reviews.size() - 1)) {
                 return;
             }
@@ -76,9 +73,9 @@ public class MovieReviewsUIController implements Initializable {
         
        movieListItems.clear();
        
-       for (MovieReview review : reviews) {
+       reviews.forEach((review) -> {
            movieListItems.add(review.title);
-       }
+        });
        
        moviesListView.setItems(movieListItems);
        
@@ -88,6 +85,8 @@ public class MovieReviewsUIController implements Initializable {
             moviesListView.scrollTo(0);
         }
     }
+    
+    //Desktop.getDesktop().browse(new URI("http://www.example.com"));
     
     @FXML
     private void handleSearch(ActionEvent event) {
